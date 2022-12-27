@@ -1,9 +1,12 @@
-Codigo = str(input('Código da ação: '))
-valorAtual = float(input('Valor atual da ação: '))
-aporte = float(input('Digite o valor aportado mensalmente: R$'))
+Codigo = str(input('Código da ação: ')).strip().upper()
+vv = str(input('Valor atual da ação: ')).replace(',', '.')
+valorAtual = float(vv)
+aapt = str(input('Digite o valor aportado mensalmente: R$')).replace(',', '.')
+aporte = float(aapt)
 temp = int(input('Por quanto tempo o aporte será efetuado em anos? '))
 tempo = temp * 12
-mediaDividendo = float(input('Qual a Média dos ultimos 10 dividendos distribuidos? R$'))
+dd = str(input('Qual a Média dos ultimos 10 dividendos distribuidos? R$')).replace(',', '.')
+mediaDividendo = float(dd)
 reinvestimentoDividendo = str(input('Haverá o reinvestimento de dividendos? [S/N]: ')).strip().upper()[0]
 while reinvestimentoDividendo not in 'SsNn':
     print('Resposta incorreta, tente novamente...')
@@ -37,17 +40,27 @@ while True:
             Saldo += dividendoTotal
         print(f'Total de ações: {totalAcoes}')
         print()
+        if mes >= tempo:
+            print('-=' * 50)
+            print(f'{" " * espaco}{Codigo}{" " * espaco}')
+            print('-=' * 50)
+            print(f'=>   Foram adquiridas {totalAcoes} ações  ')
+            print(f'=>   O total aportado foi {total:.2f}')
+            print(f'=>   Saldo restante {Saldo:.2f}')
+            print(f'=>   O valor total que as ações valem com o reinvestimento dos dividendos é: {float(totalAcoes * valorAtual):.2f}')
+            break
 
-        if mes == tempo:
-            print(
-                f'O valor total que as ações valem com o reinvestimento dos dividendos é: {float(totalAcoes * valorAtual):.2f}')
         mes += 1
     elif reinvestimentoDividendo in 'Nn:':
+
         print(f'Total de ações: {totalAcoes}')
         print()
         mes += 1
-
-    if mes >= tempo:
-        print(f'Foram adquiridas {totalAcoes} ações, total aportado foi {total:.2f}\n  ')
-        print(f'Saldo restante {Saldo:.2f}')
-        break
+        if mes >= tempo:
+            print('-=' * 50)
+            print(f'{" " * espaco}{Codigo}{" " * espaco}')
+            print('-=' * 50)
+            print(f'=>   Foram adquiridas {totalAcoes} ações  ')
+            print(f'=>   O total aportado foi {total:.2f}')
+            print(f'=>   Saldo restante {Saldo:.2f}')
+    espaco = int((100 - len(Codigo)) / 2)
