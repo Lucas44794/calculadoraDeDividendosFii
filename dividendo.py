@@ -48,7 +48,7 @@ while reinvestimentoDividendo not in 'SsNn':
     print('Resposta incorreta, tente novamente...')
     reinvestimentoDividendo = str(input('Haverá o reinvestimento de dividendos? [S/N]: ')).strip().upper()[0]
 while True:
-    visualizar = str(input('Deseja ver os calculos mensalmente? [S/N]: ]')).strip().upper()[0]
+    visualizar = str(input('Deseja ver os calculos mensalmente? [S/N]: ')).strip().upper()[0]
     if visualizar in 'SN':
         break
 total = dividendoTotal = totalAcoes = acoes = Saldo = 0
